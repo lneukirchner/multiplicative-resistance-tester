@@ -1,5 +1,9 @@
 def main():
-    fp = open('list.txt', 'a')
+    try:
+        fp = open('list.txt', 'w')
+        fp.write("")
+    except:
+        fp = open('list.txt', 'x')
     
     current_number = 0
     current_record = 0
