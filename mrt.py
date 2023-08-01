@@ -12,21 +12,23 @@ def main():
         current_record = mp_num_dict[max(mp_num_dict.keys())]
     except:
         current_record = 0
-    
-    print(current_record)
+    #print(current_record)
 
     current_number = current_record + 1
-    print(current_number)
+    #print(current_number)
 
     while(True):
+        
         multiplicative_persistence = test_number(current_number)
+        #print(current_number)
+        
         if multiplicative_persistence > current_record:
             #print(str(current_number) + " " + str(multiplicative_persistence))
             mp_num_dict[multiplicative_persistence] = current_number
             print(mp_num_dict)
             pickle.dump(mp_num_dict, open('mp_num_dict.pickle', 'wb'))
             current_record = multiplicative_persistence
-
+        
         current_number += 1
 
 def test_number(number):
@@ -35,12 +37,11 @@ def test_number(number):
     elif number % 10 == 0:
         return 1
 
-    string_number = str(number)
-    digit_list = list(string_number)
+    digit_list = list(map(int, str(number)))
     
-    if "0" in digit_list:
+    if 0 in digit_list:
         return 1
-    elif "5" in digit_list and "2" in digit_list:
+    elif 5 in digit_list and (2 in digit_list or 4 in digit_list or 6 in digit_list or 8 in digit_list):
         return 2
     else:
         done = False
@@ -48,11 +49,11 @@ def test_number(number):
         while done == False:
             current_product = 1
             for element in digit_list:
-                current_product *= int(element)
-            if len(str(current_product)) == 1:
+                current_product *= element
+            if current_product < 10:
                 return current_iteration
             else:
-                digit_list = list(str(current_product))
+                digit_list = list(map(int, str(current_product)))
                 current_iteration += 1
     
     
