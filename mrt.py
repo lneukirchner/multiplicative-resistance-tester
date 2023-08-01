@@ -1,18 +1,16 @@
+import pickle
+
 def main():
     try:
-        fp = open('list.txt', 'w')
-        fp.write("")
-    except:
-        fp = open('list.txt', 'x')
+        current_record = pickle.
     
     current_number = 0
     current_record = 0
     while(True):
         multiplicative_resistance = test_number(current_number)
         if multiplicative_resistance > current_record:
-            print(str(current_number) + " -> " + str(multiplicative_resistance))
-            with open('list.txt', 'a') as current_list:
-                current_list.write(str(current_number) + " -> " + str(multiplicative_resistance) + "\n")
+            print(str(current_number) + " " + str(multiplicative_resistance))
+            current_list.write(str(current_number) + " " + str(multiplicative_resistance) + "\n")
             current_record = multiplicative_resistance
         current_number += 1
 
